@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/gRPC/" />
+  <Folder Name="/rest/">
+    <Project Path="rest/eCommerce.WebApi/eCommerce.WebApi.csproj" />
+  </Folder>
+</Solution>
