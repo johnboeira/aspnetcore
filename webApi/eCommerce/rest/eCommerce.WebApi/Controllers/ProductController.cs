@@ -1,11 +1,12 @@
 ﻿using eCommerce.WebApi.Contracts.Product;
+using eCommerce.WebApi.Domain;
 using eCommerce.WebApi.Infra;
+using eCommerce.WebApi.Mappings;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.WebApi.Controllers;
 
 [ApiController]
-//[Route("api/[controller]")]
 [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 public class ProductController(ProductRepository productRepository) : ControllerBase
 {
@@ -22,7 +23,7 @@ public class ProductController(ProductRepository productRepository) : Controller
         if (product is null)
             return NotFound();
 
-        return Ok(product);
+        return Ok(product.ToProductResponse());
     }
 
     [HttpGet]
@@ -30,9 +31,9 @@ public class ProductController(ProductRepository productRepository) : Controller
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<ProductResponse>>> GetAll()
     {
-        var product = await _productRepository.GetAllAsync();
+        var products = await _productRepository.GetAllAsync();
 
-        return Ok(product);
+        return Ok(products.ToProductResponse());
     }
 
     [HttpPost]
