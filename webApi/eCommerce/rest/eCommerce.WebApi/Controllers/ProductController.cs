@@ -1,5 +1,5 @@
-﻿using eCommerce.WebApi.Contracts.Product;
-using eCommerce.WebApi.Domain;
+﻿using Asp.Versioning;
+using eCommerce.WebApi.Contracts.Product;
 using eCommerce.WebApi.Infra;
 using eCommerce.WebApi.Mappings;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace eCommerce.WebApi.Controllers;
 
 [ApiController]
+[ApiVersion("1.0")]
+[ApiVersion("2.0")]
 [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 public class ProductController(ProductRepository productRepository) : ControllerBase
 {
@@ -14,6 +16,7 @@ public class ProductController(ProductRepository productRepository) : Controller
 
     [HttpGet]
     [Route(ApiEndpoints.Movies.Get)]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ProductResponse>> GetById([FromRoute] Guid id)
@@ -27,6 +30,7 @@ public class ProductController(ProductRepository productRepository) : Controller
     }
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
     [Route(ApiEndpoints.Movies.GetAll)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<ProductResponse>>> GetAll()
@@ -37,6 +41,7 @@ public class ProductController(ProductRepository productRepository) : Controller
     }
 
     [HttpPost]
+    [MapToApiVersion("1.0")]
     [Route(ApiEndpoints.Movies.Create)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> CreateProduct([FromBody] ProductCreateRequest product)
@@ -47,6 +52,7 @@ public class ProductController(ProductRepository productRepository) : Controller
     }
 
     [HttpPut]
+    [MapToApiVersion("1.0")]
     [Route(ApiEndpoints.Movies.Update)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -63,6 +69,7 @@ public class ProductController(ProductRepository productRepository) : Controller
     }
 
     [HttpDelete]
+    [MapToApiVersion("1.0")]
     [Route(ApiEndpoints.Movies.Delete)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

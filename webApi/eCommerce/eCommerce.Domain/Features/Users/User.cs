@@ -1,4 +1,4 @@
-﻿namespace eCommerce.WebApi.Domain;
+﻿namespace eCommerce.Domain.Features.Users;
 
 public class User
 {

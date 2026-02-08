@@ -1,7 +1,6 @@
-﻿using eCommerce.WebApi.Contracts.Product;
-using eCommerce.WebApi.Domain;
+﻿using eCommerce.Domain.Features.Products;
 
-namespace eCommerce.WebApi.Infra;
+namespace eCommerce.WebApi.Infra.Data;
 
 public class ProductRepository
 {
@@ -75,7 +74,7 @@ public class ProductRepository
         return _products;
     }
 
-    public async Task<Product> CreateAsync(ProductCreateRequest product)
+    public async Task<Product> CreateAsync(Product product)
     {
         await Task.Delay(700); // simulate I/O (db)
         var newProduct = new Product(Guid.NewGuid(), product.Name, product.Price);

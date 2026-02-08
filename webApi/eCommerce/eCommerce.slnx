@@ -3,4 +3,7 @@
   <Folder Name="/rest/">
     <Project Path="rest/eCommerce.WebApi/eCommerce.WebApi.csproj" />
   </Folder>
+  <Project Path="eCommerce.Application/eCommerce.Application.csproj" Id="b6c3a9fa-87e8-4caa-b155-d30ade9d6fd2" />
+  <Project Path="eCommerce.Domain/eCommerce.Domain.csproj" Id="d4a4a2c4-2899-4fbc-96a5-374db401993c" />
+  <Project Path="eCommerce.Infra.Data/eCommerce.Infra.Data.csproj" Id="aca2c925-1b77-41f6-8992-2fdd1f789a36" />
 </Solution>

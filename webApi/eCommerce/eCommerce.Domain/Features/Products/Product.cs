@@ -1,4 +1,4 @@
-﻿namespace eCommerce.WebApi.Domain;
+﻿namespace eCommerce.Domain.Features.Products;
 
 public class Product
 {

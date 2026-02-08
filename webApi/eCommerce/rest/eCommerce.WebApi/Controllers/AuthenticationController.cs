@@ -1,4 +1,5 @@
-﻿using eCommerce.WebApi.Contracts.Authentication;
+﻿using eCommerce.Infra.Data.Features.Users;
+using eCommerce.WebApi.Contracts.Authentication;
 using eCommerce.WebApi.Infra;
 using eCommerce.WebApi.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,9 @@ using System.Text;
 namespace eCommerce.WebApi.Controllers;
 
 [ApiController]
-public class AuthenticationController(AuthenticationRepository authenticationRepository) : ControllerBase
+public class AuthenticationController(UserRepository authenticationRepository) : ControllerBase
 {
-    private readonly AuthenticationRepository _authenticationRepository = authenticationRepository;
+    private readonly UserRepository _authenticationRepository = authenticationRepository;
 
     [HttpPost]
     [Route(ApiEndpoints.Authentication.Login)]
@@ -19,7 +20,7 @@ public class AuthenticationController(AuthenticationRepository authenticationRep
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest loginRequest)
     {
-        var loginOk = await _authenticationRepository.CheckIfLoginIsValid(loginRequest);
+        var loginOk = await _authenticationRepository.Exists(loginRequest.UserName, loginRequest.Password);
 
         if (loginOk)
         {
